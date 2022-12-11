@@ -3,8 +3,8 @@ package main
 import (
 	"encoding/json"
 	"fmt"
-	"github.com/imgix/prometheus-am-executor/chanmap"
-	"github.com/imgix/prometheus-am-executor/countermap"
+	"github.com/beepus/prometheus-am-executor/chanmap"
+	"github.com/beepus/prometheus-am-executor/countermap"
 	"github.com/prometheus/alertmanager/template"
 	"github.com/prometheus/client_golang/prometheus"
 	"github.com/prometheus/client_golang/prometheus/promhttp"
@@ -329,6 +329,7 @@ func (s *Server) handleWebhook(w http.ResponseWriter, req *http.Request) {
 		// that were dispatched on behalf of it, by matching commands against fingerprints
 		// used to run them.
 		s.amResolved(amMsg)
+                errors = s.amFiring(amMsg)
 	default:
 		errors = append(errors, fmt.Errorf("Unknown alertmanager message status: %s", amMsg.Status))
 	}

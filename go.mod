@@ -1,4 +1,4 @@
-module github.com/imgix/prometheus-am-executor
+module github.com/beepus/prometheus-am-executor
 
 go 1.14
 
